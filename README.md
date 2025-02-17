@@ -24,6 +24,8 @@ Handling this issue is very useful especially text editor written in Common Lisp
     - [x] think API for that escaping (I think it maybe one function minimally)
         - two functions convert from/to escaped pathname
     - [ ] make some utilities
+        - [x] `to-sb-pathname` converts to avoid UNIX wildcard patterns
+        - [ ] `from-sb-pathname` is an inversion of `to-sb-pathname`
 
 - t-sin (<shinichi.tanaka45@gmail.com>)
 
