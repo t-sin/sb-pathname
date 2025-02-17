@@ -39,7 +39,7 @@
          ;; in this test, calling escape-glob before asdf:system-relative-pathname is OK.
          ;; calling asdf one before escape-glob is NG because of calling CL pathname function internally.
          (system-relative (asdf:system-relative-pathname :trivial-sbcl-pathname escaped)))
-    (ok (try-probe-file escaped)
+    (ok (try-probe-file system-relative)
         (format nil "open an existing file~%~tpathname: ~s~%~tescaped as ~s" rawpath escaped))))
 
 (deftest probe-file-with-escaped-pathname-with-asdf-pathname-function
