@@ -1,8 +1,8 @@
-(defpackage :trivial-sbcl-pathname
+(defpackage :sb-pathname
   (:nicknames :sb-path)
   (:use :cl)
   (:export :escape-glob))
-(in-package :trivial-sbcl-pathname)
+(in-package :sb-pathname)
 
 (defparameter +glob-chars+
   '((#\? . #.(format nil "~a~a" #\\ #\?))

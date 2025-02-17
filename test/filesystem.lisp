@@ -1,6 +1,6 @@
-(defpackage :trivial-sbcl-pathname/test.filesystem
+(defpackage :sb-pathname/test.filesystem
   (:use :cl :rove))
-(in-package :trivial-sbcl-pathname/test.filesystem)
+(in-package :sb-pathname/test.filesystem)
 
 (defun try-probe-file (p)
   (handler-case
@@ -13,7 +13,7 @@
 
 (defun can-probe-file (pathname)
   (let* ((rawpath (format nil "test/files/~a" pathname))
-         (escaped (trivial-sbcl-pathname:escape-glob rawpath)))
+         (escaped (sb-pathname:escape-glob rawpath)))
     (ok (try-probe-file escaped)
         (format nil "open an existing file~%~tpathname: ~s~%~tescaped as ~s" rawpath escaped))))
 
@@ -30,7 +30,7 @@
 
 (defun can-probe-file-as-system-relative-pathname (pathname)
   (let* ((rawpath (format nil "test/files/~a" pathname))
-         (escaped (trivial-sbcl-pathname:escape-glob rawpath))
+         (escaped (sb-pathname:escape-glob rawpath))
          ;; NOTE: THE TIMING of applying escape-glob is VERY IMPORTANT.
          ;;
          ;; the point of the issue of this library are **pathname processes has done by SBCL**
@@ -38,7 +38,7 @@
          ;;
          ;; in this test, calling escape-glob before asdf:system-relative-pathname is OK.
          ;; calling asdf one before escape-glob is NG because of calling CL pathname function internally.
-         (system-relative (asdf:system-relative-pathname :trivial-sbcl-pathname escaped)))
+         (system-relative (asdf:system-relative-pathname :sb-pathname escaped)))
     (ok (try-probe-file system-relative)
         (format nil "open an existing file~%~tpathname: ~s~%~tescaped as ~s" rawpath escaped))))
 
