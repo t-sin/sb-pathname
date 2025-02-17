@@ -1,27 +1,45 @@
 (defpackage :sb-pathname
   (:nicknames :sb-path)
   (:use :cl)
-  (:export :escape-glob))
+  (:export :sb-pathname-p
+           :escape-char
+           :to-sb-pathname
+           :from-sb-pathname))
 (in-package :sb-pathname)
 
-(defparameter +glob-chars+
-  '((#\? . #.(format nil "~a~a" #\\ #\?))
-    (#\* . #.(format nil "~a~a" #\\ #\*))
-    (#\[ . #.(format nil "~a~a" #\\ #\[))))
+(defparameter +escape-char-windows+ #\^)
+(defparameter +escape-target-chars-windows+ '(#\[))
 
-(defun glob-char (ch)
-  (cdr (assoc ch +glob-chars+ :test #'char=)))
+(defparameter +escape-char-unix+ #\\)
+(defparameter +escape-target-chars-unix+ '(#\? #\* #\[))
 
-(defun glob-char-p (ch)
-  (not (null (glob-char ch))))
+(defun %escape (ch)
+  (format nil "~a~a"
+          #+windows +escape-char-windows+
+          #-windows +escape-char-unix+
+          ch))
 
-;; TODO: it's a temporal name.
-;; I don't like this name and if escaping behaviors are different on other platform, this name is not suitable.
-(defun escape-glob (str)
+(defparameter +escape-mapping+
+  (loop
+    :for ch :in
+       #+windows +escape-target-chars-windows+
+       #-windows +escape-target-chars-unix+
+    :collect (cons ch (%escape ch))))
+
+(defun escape-char (ch)
+  (cdr (assoc ch +escape-mapping+ :test #'char=)))
+
+(defun to-sb-pathname (pathname)
   (with-output-to-string (stream)
     (loop
-      :for ch :across str
-      :for escaped := (glob-char ch)
+      :for ch :across pathname
+      :for escaped := (escape-char ch)
       :do (if (null escaped)
               (write-char ch stream)
               (write-string escaped stream)))))
+
+(defun %should-be-escaped-p (ch)
+  (not (null (escape-char ch))))
+
+(defun sb-pathname-p (pathname))
+(defun from-sb-pathname (pathname))

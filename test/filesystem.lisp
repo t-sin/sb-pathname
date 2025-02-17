@@ -13,7 +13,7 @@
 
 (defun can-probe-file (pathname)
   (let* ((rawpath (format nil "test/files/~a" pathname))
-         (escaped (sb-pathname:escape-glob rawpath)))
+         (escaped (sb-path:to-sb-pathname rawpath)))
     (ok (try-probe-file escaped)
         (format nil "open an existing file~%~tpathname: ~s~%~tescaped as ~s" rawpath escaped))))
 
@@ -30,14 +30,14 @@
 
 (defun can-probe-file-as-system-relative-pathname (pathname)
   (let* ((rawpath (format nil "test/files/~a" pathname))
-         (escaped (sb-pathname:escape-glob rawpath))
-         ;; NOTE: THE TIMING of applying escape-glob is VERY IMPORTANT.
+         (escaped (sb-path:to-sb-pathname rawpath))
+         ;; NOTE: THE TIMING of applying to-sb-pathname is VERY IMPORTANT.
          ;;
          ;; the point of the issue of this library are **pathname processes has done by SBCL**
          ;; so any pathname function (including ASDF's and UIOP's one) may call CL-standard pathname functions.
          ;;
-         ;; in this test, calling escape-glob before asdf:system-relative-pathname is OK.
-         ;; calling asdf one before escape-glob is NG because of calling CL pathname function internally.
+         ;; in this test, calling to-sb-pathname before asdf:system-relative-pathname is OK.
+         ;; calling asdf one before to-sb-pathname is NG because of calling CL pathname function internally.
          (system-relative (asdf:system-relative-pathname :sb-pathname escaped)))
     (ok (try-probe-file system-relative)
         (format nil "open an existing file~%~tpathname: ~s~%~tescaped as ~s" rawpath escaped))))
