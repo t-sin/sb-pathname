@@ -12,5 +12,6 @@
   :depends-on ("trivial-sbcl-pathname"
                "rove")
   :components ((:module "test"
-                :components ((:file "tests"))))
+                :components ((:file "basic")
+                             (:file "filesystem"))))
   :perform (test-op (o c) (uiop:symbol-call :rove :run c)))
