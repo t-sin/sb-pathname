@@ -3,7 +3,7 @@
 (in-package :sb-pathname/test.basic)
 
 (defun length-of-escaped-is-2 (ch)
-  (let* ((escaped (sb-path:escape-char ch))
+  (let* ((escaped (sb-path::escape-char ch))
          (len (length escaped)))
     (ok (= len 2)
         (format nil "a char ~s is espcaped as ~s, its length should be 2"

@@ -1,9 +1,7 @@
 (defpackage :sb-pathname
   (:nicknames :sb-path)
   (:use :cl)
-  (:export :sb-pathname-p
-           :escape-char
-           :to-sb-pathname
+  (:export :to-sb-pathname
            :from-sb-pathname))
 (in-package :sb-pathname)
 
@@ -38,8 +36,4 @@
               (write-char ch stream)
               (write-string escaped stream)))))
 
-(defun %should-be-escaped-p (ch)
-  (not (null (escape-char ch))))
-
-(defun sb-pathname-p (pathname))
 (defun from-sb-pathname (pathname))

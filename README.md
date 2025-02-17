@@ -21,7 +21,8 @@ Handling this issue is very useful especially text editor written in Common Lisp
             - [x] macos: same behavor
             - [x] windows: mostly same behavior, but diffrerent little. see [windows behaviors](doc/behaviors-on-windows.md)
 - [ ] implementation
-    - [ ] think API for that escaping (I think it maybe one function minimally)
+    - [x] think API for that escaping (I think it maybe one function minimally)
+        - two functions convert from/to escaped pathname
     - [ ] make some utilities
 
 - t-sin (<shinichi.tanaka45@gmail.com>)
