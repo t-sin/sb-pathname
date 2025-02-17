@@ -4,8 +4,6 @@
   :author "t-sin <shinichi.tanaka45@gmail.com>"
   :license "MIT"
   :components ((:file "package"))
-               ;(:file "escape") ; WIP name
-               ;(:file "unescape")) ; WIP name
   :in-order-to ((test-op (test-op "sb-pathname/test"))))
 
 (defsystem "sb-pathname/test"
