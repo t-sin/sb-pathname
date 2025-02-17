@@ -1,6 +1,6 @@
-(defpackage :sb-pathname/test.filesystem
+(defpackage :sb-pathname/test.probe-file
   (:use :cl :rove))
-(in-package :sb-pathname/test.filesystem)
+(in-package :sb-pathname/test.probe-file)
 
 (defun try-probe-file (p)
   (handler-case

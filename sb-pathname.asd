@@ -13,5 +13,5 @@
                "rove")
   :components ((:module "test"
                 :components ((:file "basic")
-                             (:file "filesystem"))))
+                             (:file "probe-file"))))
   :perform (test-op (o c) (uiop:symbol-call :rove :run c)))
