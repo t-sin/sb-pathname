@@ -20,12 +20,16 @@ Handling this issue is very useful especially text editor written in Common Lisp
         - results: issued problem occurs almost platform (especially Windows) but some characters cannot be used in path string in OS reason
             - [x] macos: same behavor
             - [x] windows: mostly same behavior, but diffrerent little. see [windows behaviors](doc/behaviors-on-windows.md)
-- [ ] implementation
+- [x] implementation
     - [x] think API for that escaping (I think it maybe one function minimally)
         - two functions convert from/to escaped pathname
-    - [ ] make some utilities
+    - [x] make some utilities
         - [x] `to-sb-pathname` converts to avoid UNIX wildcard patterns
-        - [ ] `from-sb-pathname` is an inversion of `to-sb-pathname`
+        - [x] `from-sb-pathname` is an inversion of `to-sb-pathname`
+- [ ] refinements
+    - [ ] test cases (other platform-special chars, other pathname functions)
+    - [ ] applicable for cl:pathname type
+    - [ ] interface
 
 - t-sin (<shinichi.tanaka45@gmail.com>)
 
