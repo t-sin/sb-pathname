@@ -36,7 +36,7 @@
         (probe-file p)
         t)
     (t (s)
-      (declare (ignore s))
+      (format t "condition ~a is signaled ~%details: ~a" s (describe s))
       nil)))
 
 (defun can-probe-file (pathname)
