@@ -2,11 +2,15 @@
 
 This library provides a small utilities to handle SBCL's glob pattern escaping.
 
+## Usage (WIP, ja)
+### `sb-path:to-sb-pathname pathname`
+### `sb-path:from-sb-pathname`
+
 ## Motivation
 
-SBCL replaces automtically some characters in pathname like `[`. This SBCLs behavior mades inconviniences in some cases e.g. reading files in a [Next.js](https://nextjs.org) project.
+Originally, fix an error occurred by opening a file like `nextjs-proj/src/pages/posts/[postId]/index.tsx` with [Lem](https://github.com/lem-project/lem) the editor written in Common Lisp.
 
-Handling this issue is very useful especially text editor written in Common Lisp.
+It seems that SBCL replaces automtically some characters in pathname like `[`. **But maybe it's wrong...??
 
 ## TODO
 
@@ -26,7 +30,7 @@ Handling this issue is very useful especially text editor written in Common Lisp
     - [x] make some utilities
         - [x] `to-sb-pathname` converts to avoid UNIX wildcard patterns
         - [x] `from-sb-pathname` is an inversion of `to-sb-pathname`
-- [ ] refinements
+- [ ] refinements or rethink
     - [ ] test cases (other platform-special chars, other pathname functions)
     - [ ] applicable for cl:pathname type
     - [ ] interface
