@@ -31,6 +31,8 @@ Handling this issue is very useful especially text editor written in Common Lisp
     - [ ] applicable for cl:pathname type
     - [ ] interface
 
+## Author
+
 - t-sin (<shinichi.tanaka45@gmail.com>)
 
 ## License
